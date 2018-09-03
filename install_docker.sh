@@ -40,11 +40,28 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 # Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88
 apt-key fingerprint 0EBFCD88
 
-# Set up the stable repository
+ARCH=$(uname -m)
+
+if [ "$ARCH" == "ppc64le" ]; then
 add-apt-repository \
    "deb [arch=ppc64el] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
+fi
+
+if [ "$ARCH" == "amd64" ] || [ "$ARCH" == "x86_64" ]; then
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+fi
+
+if [ "$ARCH" == "s390x" ]; then
+add-apt-repository \
+   "deb [arch=s390x] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+fi
 
 # Common Update
 apt-get update -y
