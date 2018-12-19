@@ -80,3 +80,10 @@ sed -i -- 's/ExecStart=\/usr\/bin\/dockerd -H fd:\/\//ExecStart=\/usr\/bin\/dock
 systemctl daemon-reload
 service docker restart
 curl http://localhost:4243/version
+
+# On RHEL
+# vi /etc/sysconfig/docker
+# Replace: OPTIONS='--selinux-enabled --log-driver=journald --signature-verification=false'
+# For: OPTIONS='--selinux-enabled --log-driver=journald --signature-verification=false -H tcp://127.0.0.1:4243 -H unix:///var/run/docker.sock'
+# systemctl restart docker
+# curl 127.0.0.1:4243/version
