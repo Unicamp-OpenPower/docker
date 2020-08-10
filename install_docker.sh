@@ -76,10 +76,10 @@ docker run hello-world
 systemctl enable docker
 
 # Enabling Docker Remote API on Ubuntu 16.04
-sed -i -- 's/ExecStart=\/usr\/bin\/dockerd -H fd:\/\//ExecStart=\/usr\/bin\/dockerd -H fd:\/\/ -H tcp:\/\/0.0.0.0:4243/g' /lib/systemd/system/docker.service
-systemctl daemon-reload
-service docker restart
-curl http://localhost:4243/version
+#sed -i -- 's/ExecStart=\/usr\/bin\/dockerd -H fd:\/\//ExecStart=\/usr\/bin\/dockerd -H fd:\/\/ -H tcp:\/\/0.0.0.0:4243/g' /lib/systemd/system/docker.service
+#systemctl daemon-reload
+#service docker restart
+#curl http://localhost:4243/version
 
 # On RHEL
 # vi /etc/sysconfig/docker
