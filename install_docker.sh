@@ -43,10 +43,9 @@ apt-key fingerprint 0EBFCD88
 ARCH=$(uname -m)
 
 if [ "$ARCH" == "ppc64le" ]; then
-add-apt-repository \
-   "deb [arch=ppc64el] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
+        echo "deb https://oplab9.parqtec.unicamp.br/pub/repository/debian/ ./" >> /etc/apt/sources.list
+        wget https://oplab9.parqtec.unicamp.br/pub/key/openpower-gpgkey-public.asc
+        apt-key add openpower-gpgkey-public.asc
 fi
 
 if [ "$ARCH" == "amd64" ] || [ "$ARCH" == "x86_64" ]; then
